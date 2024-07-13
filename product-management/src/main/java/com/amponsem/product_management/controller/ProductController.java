@@ -32,14 +32,20 @@ public class ProductController {
         return productService.findByPriceBetween(minPrice, maxPrice);
     }
 
+    @GetMapping("/category/{category}")
+    public List<Product> getProductsByCategory(@PathVariable String category){
+        return productService.findByCategory(category);
+    }
+
     @GetMapping
     public Page<Product> getAllProducts(@RequestParam int page, @RequestParam int size, @RequestParam String sortBy){
         return productService.findAll(page, size,sortBy);
     }
 
-    @DeleteMapping("/name/{name}")
-    public ResponseEntity<String> deleteProduct(@PathVariable String name){
-        productService.deleteProduct(name);
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable String id){
+        productService.deleteProduct(id);
         return ResponseEntity.ok().body("Product deleted successfully");
     }
 

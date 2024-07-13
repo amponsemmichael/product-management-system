@@ -33,6 +33,10 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    public List<Product> findByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+
     public void addProduct(Product product) {
         productRepository.save(product);
 //        productTree.add(product);
@@ -42,7 +46,7 @@ public class ProductService {
 //        return productTree.containsNode(name);
 //    }
 
-    public void deleteProduct(String name) {
-        productRepository.deleteById(name);
+    public void deleteProduct(String id) {
+        productRepository.deleteById(id);
     }
 }
