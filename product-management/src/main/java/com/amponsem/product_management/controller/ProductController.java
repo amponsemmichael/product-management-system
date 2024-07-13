@@ -18,7 +18,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<String> createProduct(@RequestBody Product product){
-        //handle product creation logic here
+        productService.addProduct(product);
         return ResponseEntity.ok().body("Product created successfully");
     }
 
@@ -28,12 +28,19 @@ public class ProductController {
     }
 
     @GetMapping("/price")
-    public List<Product> getProductsByPrice(@RequestParam Double minPrice, @RequestParam Double maxPrice){
+    public List<Product> getProductsByPriceRange(@RequestParam Double minPrice, @RequestParam Double maxPrice){
         return productService.findByPriceBetween(minPrice, maxPrice);
     }
 
     @GetMapping
-    public Page<Product> getProducts(@RequestParam int page, @RequestParam int size, @RequestParam String sortBy){
+    public Page<Product> getAllProducts(@RequestParam int page, @RequestParam int size, @RequestParam String sortBy){
         return productService.findAll(page, size,sortBy);
     }
+
+    @DeleteMapping("/name/{name}")
+    public ResponseEntity<String> deleteProduct(@PathVariable String name){
+        productService.deleteProduct(name);
+        return ResponseEntity.ok().body("Product deleted successfully");
+    }
+
 }
