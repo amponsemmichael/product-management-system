@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="ab354bb1-27f0-4588-8933-d44c33e280d3" name="products@cluster0.gupsa4i.mongodb.net Mapping">
+      <data-sources db="e1d98d40-9db6-47c7-8d7e-8967d41092ef" />
+    </mapping>
+  </component>
+</project>
