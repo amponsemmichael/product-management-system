@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 const CreateProducts = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [category, setCategory] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
