@@ -1,2 +1,2 @@
 # product-management-system
-An e-commerce Product Management System that allows for advanced product management using Spring Boot.
+A Product Management System that allows for advanced product management using technologies such SpringBoot, React.js, MongoDB, JavaScript, Node.JS, etc.
