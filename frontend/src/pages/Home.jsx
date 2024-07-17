@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
@@ -11,15 +12,16 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        fetchProducts(page);
-    }, [page]);
+        fetchProducts(page, searchTerm);
+    }, [page, searchTerm]);
 
-    const fetchProducts = (page) => {
+    const fetchProducts = (page, searchTerm) => {
         setLoading(true);
         axios
-            .get(`http://localhost:8080/products?page=${page}&size=10`)
+            .get(`http://localhost:8080/products?page=${page}&size=10&search=${searchTerm}`)
             .then((res) => {
                 console.log("response data: ", res.data);
                 if (res.data && Array.isArray(res.data.content)) {
@@ -44,6 +46,10 @@ const Home = () => {
         setPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
     };
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
     return (
         <div className="p-4">
             <div className="flex justify-between items-center">
@@ -52,7 +58,15 @@ const Home = () => {
                     <MdOutlineAddBox className="text-sky-800 text-4xl" />
                 </Link>
             </div>
-
+            <div className="mb-4">
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    placeholder="Search by name or category"
+                    className="border p-2 rounded w-full"
+                />
+            </div>
             {loading ? (
                 <Spinner />
             ) : (

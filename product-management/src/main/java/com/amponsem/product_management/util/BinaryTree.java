@@ -1,5 +1,4 @@
 package com.amponsem.product_management.util;
-
 import com.amponsem.product_management.model.Product;
 
 public class BinaryTree {
