@@ -1,12 +1,9 @@
 package com.amponsem.product_management.util;
 
 import com.amponsem.product_management.model.Product;
+
 public class BinaryTree {
     private Node root;
-
-    public boolean containsNode(String name) {
-        return containsNodeRecursive(root,name);
-    }
 
     private static class Node {
         Product product;
@@ -36,6 +33,10 @@ public class BinaryTree {
         return current;
     }
 
+    public boolean containsNode(String name) {
+        return containsNodeRecursive(root, name);
+    }
+
     private boolean containsNodeRecursive(Node current, String name) {
         if (current == null) {
             return false;
@@ -43,9 +44,9 @@ public class BinaryTree {
         if (name.equals(current.product.getName())) {
             return true;
         }
-
         return name.compareTo(current.product.getName()) < 0
-                ? containsNodeRecursive(current.left, name) : containsNodeRecursive(current.right, name);
+                ? containsNodeRecursive(current.left, name)
+                : containsNodeRecursive(current.right, name);
     }
 
     public void delete(String name) {
@@ -66,10 +67,9 @@ public class BinaryTree {
             if (current.left == null) {
                 return current.right;
             }
-
             String smallestValue = findSmallValue(current.right);
             current.product.setName(smallestValue);
-            current = deleteRecursive(current.left, smallestValue);
+            current.right = deleteRecursive(current.right, smallestValue);
             return current;
         }
         if (name.compareTo(current.product.getName()) < 0) {
@@ -84,3 +84,4 @@ public class BinaryTree {
         return root.left == null ? root.product.getName() : findSmallValue(root.left);
     }
 }
+

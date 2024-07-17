@@ -47,9 +47,9 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<Page<Product>> getAllProducts(
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "12") int size,
-            @RequestParam(required = false, defaultValue = "name") String sortBy) {
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "name") String sortBy) {
         Page<Product> products = productService.findAll(page,size,sortBy);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
